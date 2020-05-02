@@ -162,10 +162,10 @@ bool is_timestamp( std::string const& s ) {
 
 }
 
-void History::do_load( std::string const& filename ) {
+bool History::do_load( std::string const& filename ) {
 	ifstream histFile( filename );
 	if ( ! histFile ) {
-		return;
+		return false;
 	}
 	string line;
 	string when( "0000-00-00 00:00:00.000" );
@@ -182,17 +182,18 @@ void History::do_load( std::string const& filename ) {
 			_entries.emplace_back( when, UnicodeString( line ) );
 		}
 	}
-	return;
+	return true;
 }
 
-void History::load( std::string const& filename ) {
+bool History::load( std::string const& filename ) {
 	clear();
-	do_load( filename );
+	bool success = do_load( filename );
 	sort();
 	remove_duplicates();
 	trim_to_max_size();
 	_previous = _current = last();
 	_yankPos = _entries.end();
+	return success;
 }
 
 void History::sort( void ) {

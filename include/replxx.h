@@ -40,6 +40,8 @@
 #define REPLXX_VERSION_MAJOR 0
 #define REPLXX_VERSION_MINOR 0
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -488,7 +490,7 @@ REPLXX_IMPEXP ReplxxHistoryScan* replxx_history_scan_start( Replxx* );
 REPLXX_IMPEXP void replxx_history_scan_stop( Replxx*, ReplxxHistoryScan* );
 REPLXX_IMPEXP int replxx_history_scan_next( Replxx*, ReplxxHistoryScan*, ReplxxHistoryEntry* );
 REPLXX_IMPEXP void replxx_history_save( Replxx*, const char* filename );
-REPLXX_IMPEXP void replxx_history_load( Replxx*, const char* filename );
+REPLXX_IMPEXP bool replxx_history_load( Replxx*, const char* filename );
 REPLXX_IMPEXP void replxx_history_clear( Replxx* );
 REPLXX_IMPEXP void replxx_clear_screen( Replxx* );
 #ifdef __REPLXX_DEBUG__

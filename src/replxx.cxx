@@ -159,8 +159,8 @@ void Replxx::history_save( std::string const& filename ) {
 	_impl->history_save( filename );
 }
 
-void Replxx::history_load( std::string const& filename ) {
-	_impl->history_load( filename );
+bool Replxx::history_load( std::string const& filename ) {
+	return _impl->history_load( filename );
 }
 
 void Replxx::history_clear( void ) {
@@ -549,13 +549,13 @@ void replxx_history_save( ::Replxx* replxx_, const char* filename ) {
 }
 
 /* Load the history from the specified file. If the file does not exist
- * zero is returned and no operation is performed.
+ * false is returned and no operation is performed.
  *
- * If the file exists and the operation succeeded 0 is returned, otherwise
- * on error -1 is returned. */
-void replxx_history_load( ::Replxx* replxx_, const char* filename ) {
+ * Return true if the file exists and the operation succeeded,
+ * false otherwise.  */
+bool replxx_history_load( ::Replxx* replxx_, const char* filename ) {
 	replxx::Replxx::ReplxxImpl* replxx( reinterpret_cast<replxx::Replxx::ReplxxImpl*>( replxx_ ) );
-	replxx->history_load( filename );
+	return replxx->history_load( filename );
 }
 
 void replxx_history_clear( ::Replxx* replxx_ ) {

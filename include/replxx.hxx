@@ -459,7 +459,7 @@ public:
 
 	void history_add( std::string const& line );
 	void history_save( std::string const& filename );
-	void history_load( std::string const& filename );
+	bool history_load( std::string const& filename );
 	void history_clear( void );
 	int history_size( void ) const;
 	HistoryScan history_scan( void ) const;
